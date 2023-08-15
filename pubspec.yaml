@@ -22,6 +22,7 @@ dependencies:
 
   #Networks
   connectivity_plus: ^4.0.2
+  http: ^1.1.0
 
   #Local Storage
   flutter_secure_storage: ^8.0.0
@@ -29,6 +30,14 @@ dependencies:
   #Widgets
   another_flushbar: ^1.12.30
   image_picker: ^1.0.2
+  #Features
+  google_sign_in: ^6.1.4
+  fpdart: ^1.1.0
+  flutter_hooks: ^0.20.0
+  #google api
+  googleapis: ^11.4.0
+  googleapis_auth: ^1.4.1
+  url_launcher: ^6.1.12
   
 
 dev_dependencies:
