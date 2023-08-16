@@ -1,4 +1,5 @@
 import 'package:activity_monitor/src/features/NewEvent/Presentation/widgets/even_textfield.dart';
+import 'package:activity_monitor/src/features/NewEvent/Services/helpers.dart';
 import 'package:activity_monitor/src/ui_utils/app_snack_bar.dart';
 import 'package:activity_monitor/src/utils/src/helpers/ui_dimens.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,7 +25,7 @@ class AddNewEvent extends HookConsumerWidget {
         children: [
           InkWell(
             onTap: () {
-              _showDialog(
+              AddEventHelper.showDialogs(
                   CupertinoDatePicker(
                     initialDateTime: DateTime.now(),
                     onDateTimeChanged: (time) {
@@ -36,25 +37,15 @@ class AddNewEvent extends HookConsumerWidget {
                   ),
                   context);
             },
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  hintText: "Start Date",
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(5)),
-                  fillColor: Colors.white,
-                  filled: true),
-              controller: startEventController,
-            ),
+            child: EventTextFiled(
+                controller: startEventController, hintText: "Start Date"),
           ),
-          EventTextFiled(
-              controller: startEventController, hintText: "Start Date"),
           const SizedBox(
             height: 20,
           ),
           InkWell(
             onTap: () async {
-              _showDialog(
+              AddEventHelper.showDialogs(
                   CupertinoDatePicker(
                     initialDateTime: DateTime.now(),
                     onDateTimeChanged: (time) {
@@ -118,26 +109,4 @@ class AddNewEvent extends HookConsumerWidget {
       ).paddingAll(10),
     );
   }
-}
-
-void _showDialog(Widget child, BuildContext context) {
-  showCupertinoModalPopup<void>(
-    context: context,
-    builder: (BuildContext context) => Container(
-      height: 216,
-      padding: const EdgeInsets.only(top: 6.0),
-      // The bottom margin is provided to align the popup above the system
-      // navigation bar.
-      margin: EdgeInsets.only(
-        bottom: MediaQuery.of(context).viewInsets.bottom,
-      ),
-      // Provide a background color for the popup.
-      color: CupertinoColors.systemBackground.resolveFrom(context),
-      // Use a SafeArea widget to avoid system overlaps.
-      child: SafeArea(
-        top: false,
-        child: child,
-      ),
-    ),
-  );
 }

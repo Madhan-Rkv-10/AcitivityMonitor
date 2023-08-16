@@ -5,7 +5,7 @@ import '../Services/home_services.dart';
 class HomeRepository implements HomeServices {
   @override
   Future<List<google_api.Event>> getGoogleEventsData(
-      {Map<String, String>? token}) async {
+      {required Map<String, String> token}) async {
     final GoogleAPIClient httpClient = GoogleAPIClient(token!);
     final google_api.CalendarApi calendarAPI =
         google_api.CalendarApi(httpClient);
