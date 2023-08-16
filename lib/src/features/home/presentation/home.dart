@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:activity_monitor/src/features/auth/providers/Notifiers/auth_providers.dart';
+import 'package:activity_monitor/src/routing/route_constants.dart';
 import 'package:activity_monitor/src/utils/src/extensions/color_extension.dart';
 import 'package:activity_monitor/src/utils/src/helpers/ui_dimens.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,8 @@ class HomeScreen extends HookConsumerWidget {
   const HomeScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final allEventsData = ref.watch(allEvents);
+    // final allEventsData = ref.watch(allEvents);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -22,9 +24,21 @@ class HomeScreen extends HookConsumerWidget {
         actions: [
           IconButton(
             onPressed: () async {
+              void pusAuthScreen() {
+                Navigator.pushReplacementNamed(
+                    context, RouteConstants.authScreen);
+              }
+
               final result = await ref.read(authController).signOut();
               log("SuccessfullySignOut$result");
-              ref.read(keyValueStorageProvider).resetKeys();
+              if (result) {
+                ref.read(keyValueStorageProvider).resetKeys();
+
+                if (context.mounted) {
+                  Navigator.pushReplacementNamed(
+                      context, RouteConstants.authScreen);
+                }
+              }
             },
             icon: const Icon(
               Icons.logout,
@@ -43,7 +57,7 @@ class HomeScreen extends HookConsumerWidget {
             ).paddingSymmetric(horizontal: 10, vertical: 5),
             SizedBox(
               height: context.screenHeight * 0.4,
-              child: allEventsData.when(
+              child: ref.watch(allEvents).when(
                   data: (events) {
                     return Scrollbar(
                       child: ListView.builder(
@@ -65,10 +79,17 @@ class HomeScreen extends HookConsumerWidget {
                   error: (e, t) {
                     return Text(e.toString());
                   },
-                  loading: () => const CircularProgressIndicator()),
+                  loading: () => const LinearProgressIndicator()),
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, RouteConstants.newEvent);
+        },
+        shape: const StadiumBorder(),
+        child: const Icon(Icons.add),
       ),
     );
   }

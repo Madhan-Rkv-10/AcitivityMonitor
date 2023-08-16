@@ -1,3 +1,4 @@
+import 'package:activity_monitor/src/features/NewEvent/Presentation/add_new_event.dart';
 import 'package:activity_monitor/src/features/auth/Presentation/auth_screen.dart';
 
 import '../../src/routing/route_constants.dart';
@@ -8,6 +9,7 @@ import '../features/splash/screen/splash_screen.dart';
 
 class RouteManager {
   MaterialPageRoute<dynamic> route(RouteSettings settings) {
+    // ignore: unused_local_variable
     dynamic data = settings.arguments != null ? settings.arguments ?? {} : {};
 
     switch (settings.name) {
@@ -17,16 +19,22 @@ class RouteManager {
             builder: (context) => const SplashScreen());
       case RouteConstants.homeScreen:
         return MaterialPageRoute(
-            settings: RouteSettings(
+            settings: const RouteSettings(
               name: RouteConstants.homeScreen,
             ),
             builder: (context) => const HomeScreen());
       case RouteConstants.authScreen:
         return MaterialPageRoute(
-            settings: RouteSettings(
+            settings: const RouteSettings(
               name: RouteConstants.authScreen,
             ),
             builder: (context) => const LoginScreen());
+      case RouteConstants.newEvent:
+        return MaterialPageRoute(
+            settings: const RouteSettings(
+              name: RouteConstants.newEvent,
+            ),
+            builder: (context) => const AddNewEvent());
       default:
         return MaterialPageRoute(
             settings: const RouteSettings(name: RouteConstants.splashScreen),
