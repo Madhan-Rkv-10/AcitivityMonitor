@@ -7,11 +7,8 @@ import '../../domain Model/error_model.dart';
 import '../../domain Model/user_model.dart';
 import 'package:googleapis/calendar/v3.dart' as googleAPI;
 
-final repoProviders =
-    Provider((ref) => AuthRepository(googleSignIn: GoogleSignIn()));
-
 class AuthController with ChangeNotifier {
-  final autuRespo = AuthRepository(googleSignIn: GoogleSignIn());
+  final autuRespo = AuthRepository();
   UserResponseModel? userResponseModel;
   ErrorModel? errorModel;
   var header;
@@ -35,9 +32,8 @@ class AuthController with ChangeNotifier {
     );
   }
 
-  Future<List<googleAPI.Event>> getEvent() async {
-    final result = await autuRespo.getGoogleEventsData(header: header);
+  Future<bool> signOut() async {
+    final result = await autuRespo.signOut();
     return result;
   }
-// Future<List>
 }

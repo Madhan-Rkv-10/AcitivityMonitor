@@ -16,9 +16,9 @@ class AppTheme {
     scaffoldBackgroundColor: const Color(0xffF5F5F5),
     cardColor: Colors.white,
     appBarTheme: const AppBarTheme(
-      color: Colors.white,
+      color: Colors.purple,
       iconTheme: IconThemeData(
-        color: Colors.white,
+        color: Colors.purple,
       ),
     ),
     textTheme: const TextTheme(
@@ -57,9 +57,9 @@ class AppTheme {
       },
     ),
     appBarTheme: const AppBarTheme(
-      color: Colors.black,
+      color: Colors.purple,
       iconTheme: IconThemeData(
-        color: Colors.black,
+        color: Colors.purple,
       ),
     ),
     textTheme: const TextTheme(
