@@ -16,11 +16,12 @@ class AuthRepository implements AuthServices {
   Future<Either<GoogleSignInAccount, ErrorModel>> signInWithGoogle() async {
     try {
       account = await _googleSignIn.signIn();
-      await account?.authHeaders.then((value) {
-        _keyValueStorageService.setAuthToken(value.entries.first.value);
-        log(value.entries.first.value);
-      });
+
       if (account != null) {
+        await account?.authHeaders.then((value) {
+          _keyValueStorageService.setAuthToken(value.entries.first.value);
+          log(value.entries.first.value);
+        });
         return left(account!);
       } else {
         return right(ErrorModel(error: "User is null", data: null));

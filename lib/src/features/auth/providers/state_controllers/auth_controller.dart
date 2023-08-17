@@ -19,7 +19,7 @@ class AuthController with ChangeNotifier {
         userResponseModel = UserResponseModel(
             email: l.email,
             name: l.displayName!,
-            profilePic: l.photoUrl!,
+            profilePic: l.photoUrl ?? '',
             token: '',
             uid: '');
         header = l.authHeaders;

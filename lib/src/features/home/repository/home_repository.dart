@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:googleapis/calendar/v3.dart' as google_api;
 import '../Services/api_header_services.dart';
 import '../Services/home_services.dart';
@@ -9,6 +11,7 @@ class HomeRepository implements HomeServices {
     final GoogleAPIClient httpClient = GoogleAPIClient(token);
     final google_api.CalendarApi calendarAPI =
         google_api.CalendarApi(httpClient);
+
     final google_api.Events calEvents = await calendarAPI.events.list(
       "primary",
     );
