@@ -6,10 +6,9 @@ class HomeRepository implements HomeServices {
   @override
   Future<List<google_api.Event>> getGoogleEventsData(
       {required Map<String, String> token}) async {
-    final GoogleAPIClient httpClient = GoogleAPIClient(token!);
+    final GoogleAPIClient httpClient = GoogleAPIClient(token);
     final google_api.CalendarApi calendarAPI =
         google_api.CalendarApi(httpClient);
-
     final google_api.Events calEvents = await calendarAPI.events.list(
       "primary",
     );

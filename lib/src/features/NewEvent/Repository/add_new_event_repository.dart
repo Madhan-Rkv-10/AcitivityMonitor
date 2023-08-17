@@ -47,7 +47,7 @@ class AddEventController extends ChangeNotifier {
       final event = Event(
           summary: summary,
           description: description,
-          location: "location",
+          location: "Agira Technologies",
           start: EventDateTime(
             dateTime: startTime,
           ),

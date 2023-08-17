@@ -38,7 +38,9 @@ class AddNewEvent extends HookConsumerWidget {
                   context);
             },
             child: EventTextFiled(
-                controller: startEventController, hintText: "Start Date"),
+                enabled: false,
+                controller: startEventController,
+                hintText: "Start Date"),
           ),
           const SizedBox(
             height: 20,
@@ -58,7 +60,9 @@ class AddNewEvent extends HookConsumerWidget {
                   context);
             },
             child: EventTextFiled(
-                controller: endEventController, hintText: "End Date"),
+                enabled: false,
+                controller: endEventController,
+                hintText: "End Date"),
           ),
           const SizedBox(
             height: 20,

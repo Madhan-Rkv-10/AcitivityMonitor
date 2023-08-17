@@ -16,7 +16,7 @@ class AuthRepository implements AuthServices {
   Future<Either<GoogleSignInAccount, ErrorModel>> signInWithGoogle() async {
     try {
       account = await _googleSignIn.signIn();
-      account?.authHeaders.then((value) {
+      await account?.authHeaders.then((value) {
         _keyValueStorageService.setAuthToken(value.entries.first.value);
         log(value.entries.first.value);
       });
